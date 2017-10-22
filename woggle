@@ -1,18 +1,18 @@
 #!/bin/ash
 clear
 if [[ -z "${1}" || -z "${2}" ]] || [[ "${1}" != "on" && "${1}" != "off" && "${1}" != "auto" ]]; then
- echo '-- [USO] ------------------------'
- echo '+                               +'
- echo '+ ./wifi.sh (on|off|auto) SSID  +'
- echo '---------------------------------'
+ echo '- [MODO DE USO] -------------------'
+ echo '+                                 +'
+ echo '+ ./woggle (on|off|auto) SSID  +'
+ echo '-----------------------------------'
  exit
 fi
 
 REDE=$(uci show wireless | grep -F "${2}'" | sed s/.ssid.*//g)
 if [ -z "${REDE}" ]; then
- echo --------------------------
- echo + A rede nao encontrada  +
- echo --------------------------
+ echo '--------------------------'
+ echo '+ A rede nao encontrada  +'
+ echo '--------------------------'
  exit
 fi
 
@@ -28,36 +28,4 @@ elif [ "${1}" == "auto" ]; then
 fi
 uci commit wireless; wifi
 clear; echo 'Feito'
-exit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+exit 0
